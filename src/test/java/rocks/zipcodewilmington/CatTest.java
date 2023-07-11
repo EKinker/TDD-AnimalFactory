@@ -2,7 +2,9 @@ package rocks.zipcodewilmington;
 
 import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Mammal;
 
 import java.util.Date;
 
@@ -41,9 +43,18 @@ public class CatTest {
     }
 
     @Test
-    public void testSetName() {
+    public void testSetName1() {
         Cat cat = new Cat("",null, 0);
         String expected = "Roxy";
+        cat.setName(expected);
+        String actual = cat.getName();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @ Test
+    public void testSetName2() {
+        String expected = "Little Mayhem";
+        Cat cat = new Cat(expected, null, null);
         cat.setName(expected);
         String actual = cat.getName();
         Assert.assertEquals(expected, actual);
@@ -59,9 +70,26 @@ public class CatTest {
     }
 
     @Test
+    public void setBirthDate2(){
+        Date expected = new Date();
+        Cat cat = new Cat(null, expected, null);
+        cat.setBirthDate(expected);
+        Date actual = cat.getBirthDate();
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
     public void testSpeak(){
         Cat cat = new Cat("Professor Cattens", null, null);
         String expected = "meow!";
+        String actual = cat.speak();
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testSpeak2(){
+        String expected = "meow!";
+        Cat cat = new Cat("Walter", null, null);
         String actual = cat.speak();
         Assert.assertEquals(actual, expected);
     }
@@ -78,6 +106,44 @@ public class CatTest {
         Assert.assertEquals(expectedMeals, actualMeals);
     }
 
+    @Test
+    public void testCatEat2() {
+        Cat cat = new Cat("", null, null);
+        int expectedMeals = 1;
 
+        //Food food = new Food();
+        //cat.eat(food);
+        cat.eat(new Food());
+        int actualMeals = cat.getNumberOfMealsEaten();
+        Assert.assertEquals(actualMeals, expectedMeals);
+    }
 
+    @Test
+    public void testGetId(){
+        Cat cat = new Cat ("Lucy", null, 53);
+        int expected = 53;
+        int actual = cat.getId();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetId2(){
+        int expected = 234;
+        Cat cat = new Cat(null, null, expected);
+        int actual = cat.getId();
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testAnimalInheritance() {
+        Cat cat = new Cat ("", null, 0);
+        Assert.assertTrue(cat instanceof Animal);
+    }
+
+    @Test
+    public void testMammalInheritance() {
+        Cat cat = new Cat("", null, 0);
+        Assert.assertTrue(cat instanceof Mammal);
+
+    }
 }
