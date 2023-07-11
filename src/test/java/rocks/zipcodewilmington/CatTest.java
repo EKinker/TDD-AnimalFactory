@@ -42,7 +42,7 @@ public class CatTest {
 
     @Test
     public void testSetName() {
-        Cat cat = new Cat("Jane",null, 0);
+        Cat cat = new Cat("",null, 0);
         String expected = "Roxy";
         cat.setName(expected);
         String actual = cat.getName();
@@ -54,6 +54,30 @@ public class CatTest {
         Cat cat = new Cat("", null, 0);
         Date expected = new Date();
         cat.setBirthDate(expected);
-
+        Date actual = cat.getBirthDate();
+        Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testSpeak(){
+        Cat cat = new Cat("Professor Cattens", null, null);
+        String expected = "meow!";
+        String actual = cat.speak();
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testCatEat() {
+        Cat cat = new Cat("Loki", null, null);
+
+        int startingMeals = cat.getNumberOfMealsEaten();
+        int expectedMeals = startingMeals + 1;
+
+        cat.eat(new Food());
+        int actualMeals = cat.getNumberOfMealsEaten();
+        Assert.assertEquals(expectedMeals, actualMeals);
+    }
+
+
+
 }
