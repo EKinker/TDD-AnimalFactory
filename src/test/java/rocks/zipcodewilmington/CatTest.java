@@ -54,7 +54,7 @@ public class CatTest {
     @ Test
     public void testSetName2() {
         String expected = "Little Mayhem";
-        Cat cat = new Cat(expected, null, null);
+        Cat cat = new Cat("Default Shelter Name", null, null);
         cat.setName(expected);
         String actual = cat.getName();
         Assert.assertEquals(expected, actual);
