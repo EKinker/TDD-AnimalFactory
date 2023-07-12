@@ -13,8 +13,39 @@ import java.util.Date;
  */
 public class DogHouseTest {
     // TODO - Create tests for `void add(Dog dog)`
+    @Test
+    public void testAddDog(){
+
+        Dog dog = new Dog("Bobbi", new Date(), 42);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        Dog actual = DogHouse.getDogById(42);
+        Assert.assertEquals(dog, actual);
+    }
+
     // TODO - Create tests for `void remove(Integer id)`
+    @Test
+    public void testRemoveById() {
+        int id = 4815;
+        Dog dog = new Dog("Kiki", new Date(), id);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        DogHouse.remove(id);
+
+        Assert.assertNull(DogHouse.getDogById(id));
+    }
+
     // TODO - Create tests for `void remove(Dog dog)`
+    @Test
+    public void testRemoveDog() {
+        int id = 162342;
+        Dog dog = new Dog("", null, id);
+        DogHouse.clear();
+        DogHouse.add(dog);
+        DogHouse.remove(dog);
+        Assert.assertNull(DogHouse.getDogById(id));
+    }
+
     // TODO - Create tests for `Dog getDogById(Integer id)`
     @Test
     public void testGetDogById(){
@@ -23,6 +54,7 @@ public class DogHouseTest {
         Dog dog = new Dog("Charles X", null, id);
 
         //when
+        DogHouse.clear();
         DogHouse.add(dog);
 
         //then
